@@ -30,7 +30,7 @@ class SystemService
         }
 
         $total = $memory['MemTotal'];
-        $disponivel = $memory['MemAvailable'];
+        $disponivel = $memory['MemFree'];
         $usado = $total - $disponivel;
 
         return [
@@ -43,15 +43,28 @@ class SystemService
 
     public function getCpuUsage()
     {
-        $total = disk_total_space("/");
-        $free = disk_free_space("/");
-        $used = $total - $free;
-
+        $cpu1 = file('/proc/stat')[0];
+    
+        usleep(100000);
+    
+        $cpu2 = file('/proc/stat')[0];
+    
+        $cpu1 = preg_split('/\s+/', trim($cpu1));
+        $cpu2 = preg_split('/\s+/', trim($cpu2));
+    
+        $idle1 = $cpu1[4];
+        $idle2 = $cpu2[4];
+    
+        $total1 = array_sum(array_slice($cpu1, 1));
+        $total2 = array_sum(array_slice($cpu2, 1));
+    
+        $total = $total2 - $total1;
+        $idle = $idle2 - $idle1;
+    
+        $porcentagem = (($total - $idle) / $total) * 100;
+    
         return [
-            'total' => $total,
-            'used' => $used,
-            'free' => $free,
-            'percentage' => ($used / $total) * 100
+            'porcentagem' => round($porcentagem, 2)
         ];
     }
 
