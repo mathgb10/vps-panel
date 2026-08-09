@@ -2,14 +2,15 @@
 
 require_once __DIR__ . "/app/controllers/AuthController.php";
 require_once __DIR__ . "/app/controllers/HomeController.php";
-require_once __DIR__ . "/app/services/sistemaService.php";
+require_once __DIR__ . "/app/controllers/sistemaController.php";
 
 $authController = new AuthController();
 $homeController = new HomeController();
-$sistemaService = new SystemService();
+$sistemaController = new sistemaController();
 
 switch ($rota) {
 
+    // Rotas de autenticação
     case "/":
         require __DIR__ . "/app/views/login.php";
         break;
@@ -28,16 +29,26 @@ switch ($rota) {
         require __DIR__ . "/app/views/login.php";
         break;
 
+    case 'logout':
+        $authController->logout();
+        break;
+    
+    // Rotas da página inical
     case 'home':
         $homeController->index();
         break;
 
+    // API com informações do sistema
     case 'api/system/disk':
-        $sistemaService->getDiskUsage();
+        $sistemaController->disk();
         break;
 
-    case 'logout':
-        $authController->logout();
+    case 'api/system/ram':
+        $sistemaController->ram();
+        break;
+
+    case 'api/system/cpu':
+        $sistemaController->cpu();
         break;
 
     default:
