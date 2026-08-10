@@ -18,18 +18,16 @@ const dom = {
 
 
 // Pega o valor em bytes e converte para a unidade correta
-function formatarBytes(bytes) {
-    const unidades = ['B', 'KB', 'MB', 'GB', 'TB'];
-    let i = 0;
+function formatarBytes(bytes, decimals = 2) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
-    while (bytes >= 1024 && i < unidades.length - 1) {
-        bytes /= 1024;
-        i++;
-    }
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-    return `${bytes.toFixed(2)} ${unidades[i]}`;
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
-
 
 // Consulta minha API e retorna em JSON
 async function getDisk() {
