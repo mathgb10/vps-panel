@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel VPS - Home</title>
 </head>
+
 <body>
     <main>
         <aside class="sidebar">
@@ -13,7 +15,7 @@
                 <p>1.0</p>
             </div>
             <div>
-                <a href="/home">Home</a>    
+                <a href="/home">Home</a>
             </div>
             <div>
                 <a href="/logout">Sair</a>
@@ -27,18 +29,30 @@
                 <div class="informacoes-box">
                     <div>
                         <div>CPU: </div>
-                        <span id="cpu-porcentagem">0%</span>
-                        <meter id="cpu-meter" min="0" max="100" value="0"></meter>
+                        <div>
+                            <span id="cpu-porcentagem">0%</span>
+                            <meter id="cpu-meter" min="0" max="100" value="0"></meter>
+                        </div>
                     </div>
                     <div>
                         <div>RAM: </div>
                         <span id="ram-porcentagem">0%</span>
                         <meter id="ram-meter" min="0" max="100" value="0"></meter>
+                        <div>
+                            <span id="ram-total">0</span>
+                            <span id="ram-usado">0</span>
+                            <span id="ram-disponivel">0</span>
+                        </div>
                     </div>
                     <div>
                         <div>Disco: </div>
                         <span id="disk-porcentagem">0%</span>
                         <meter id="disk-meter" min="0" max="100" value="0"></meter>
+                        <div>
+                            <span id="disk-total">0</span>
+                            <span id="disk-usado">0</span>
+                            <span id="disk-disponivel">0</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -46,4 +60,5 @@
     </main>
     <script src="/js/scripts.js" defer></script>
 </body>
+
 </html>

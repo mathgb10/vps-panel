@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . "/app/controllers/AuthController.php";
-require_once __DIR__ . "/app/controllers/HomeController.php";
+require_once __DIR__ . "/app/controllers/authController.php";
+require_once __DIR__ . "/app/controllers/homeController.php";
 require_once __DIR__ . "/app/controllers/sistemaController.php";
 
 $authController = new AuthController();
