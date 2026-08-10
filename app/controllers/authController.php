@@ -2,7 +2,7 @@
 
 class authController {
     public function login($usuario,$senha){
-        $usuarios = json_decode(file_get_contents(__DIR__ . "/../config/usuarios.json"), true);
+        $usuarios = json_decode(file_get_contents(__DIR__ . "/../../config/usuarios.json"), true);
 
         if($usuario == $usuarios['usuarios'][0]['nome']){
             if(password_verify($senha, $usuarios['usuarios'][0]['senha'])){
