@@ -2,17 +2,34 @@
 const dom = {
     cpuPorcentagem: document.getElementById('cpu-porcentagem'),
     cpuMeter: document.getElementById('cpu-meter'),
+
     ramPorcentagem: document.getElementById('ram-porcentagem'),
     ramMeter: document.getElementById('ram-meter'),
     ramTotal: document.getElementById('ram-total'),
     ramUsado: document.getElementById('ram-usado'),
     ramDisponivel: document.getElementById('ram-disponivel'),
+
     diskTotal: document.getElementById('disk-total'),
     diskUsado: document.getElementById('disk-usado'),
     diskDisponivel: document.getElementById('disk-disponivel'),
     diskPorcentagem: document.getElementById('disk-porcentagem'),
     diskMeter: document.getElementById('disk-meter')
 };
+
+
+// Pega o valor em bytes e converte para a unidade correta
+function formatarBytes(bytes) {
+    const unidades = ['B', 'KB', 'MB', 'GB', 'TB'];
+    let i = 0;
+
+    while (bytes >= 1024 && i < unidades.length - 1) {
+        bytes /= 1024;
+        i++;
+    }
+
+    return `${bytes.toFixed(2)} ${unidades[i]}`;
+}
+
 
 // Consulta minha API e retorna em JSON
 async function getDisk() {
@@ -21,9 +38,11 @@ async function getDisk() {
         const data = await resp.json();
         return data;
     } catch (error) {
-        return error;
+        console.error('Erro ao buscar disco:', error);
+        return null;
     }
 }
+
 
 async function getRAM() {
     try {
@@ -31,9 +50,11 @@ async function getRAM() {
         const data = await resp.json();
         return data;
     } catch (error) {
-        return error;
+        console.error('Erro ao buscar RAM:', error);
+        return null;
     }
 }
+
 
 async function getCpu() {
     try {
@@ -41,10 +62,13 @@ async function getCpu() {
         const data = await resp.json();
         return data;
     } catch (error) {
-        return error;
+        console.error('Erro ao buscar CPU:', error);
+        return null;
     }
 }
 
+
+// Atualiza as informações do painel
 async function getStatus() {
     const [cpu, ram, disk] = await Promise.all([
         getCpu(),
@@ -52,28 +76,30 @@ async function getStatus() {
         getDisk()
     ]);
 
-    // Inserindo informações nos placeholders
     // DISCO
     dom.diskPorcentagem.textContent = `${disk.porcentagem}%`;
     dom.diskMeter.value = disk.porcentagem;
-    dom.diskTotal.textContent = `${disk.total} GB`;
-    dom.diskUsado.textContent = `${disk.usado} GB`;
-    dom.diskDisponivel.textContent = `${disk.disponivel} GB`;
-    
+    dom.diskTotal.textContent = formatarBytes(disk.total);
+    dom.diskUsado.textContent = formatarBytes(disk.usado);
+    dom.diskDisponivel.textContent = formatarBytes(disk.disponivel);
+
     // RAM
     dom.ramPorcentagem.textContent = `${ram.porcentagem}%`;
     dom.ramMeter.value = ram.porcentagem;
-    dom.ramTotal.textContent = `${ram.total} GB`;
-    dom.ramUsado.textContent = `${ram.usado} GB`;
-    dom.ramDisponivel.textContent = `${ram.disponivel} GB`;
+    dom.ramTotal.textContent = formatarBytes(ram.total * 1024);
+    dom.ramUsado.textContent = formatarBytes(ram.usado * 1024);
+    dom.ramDisponivel.textContent = formatarBytes(ram.disponivel * 1024);
 
     // CPU
     dom.cpuPorcentagem.textContent = `${cpu.porcentagem}%`;
     dom.cpuMeter.value = cpu.porcentagem;
 }
 
+
+// Executa imediatamente
 getStatus();
 
-// Vai chamar a função a cada 5 segundos.
+
+// Atualiza a cada 5 segundos
 const intervalo = 5000;
 setInterval(getStatus, intervalo);

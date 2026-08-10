@@ -23,7 +23,7 @@
         </aside>
         <section class="content">
             <header class="header">
-                <h1>Bem-vindo ao Panel VPS Sr <?= $_SESSION['usuario']; ?> ?></h1>
+                <h1>Bem-vindo ao Panel VPS Sr <?= $_SESSION['usuario']; ?></h1>
             </header>
             <div class="informacoes-container">
                 <div class="informacoes-box">
@@ -39,9 +39,9 @@
                         <span id="ram-porcentagem">0%</span>
                         <meter id="ram-meter" min="0" max="100" value="0"></meter>
                         <div>
-                            <span id="ram-total">0</span>
-                            <span id="ram-usado">0</span>
-                            <span id="ram-disponivel">0</span>
+                            TOTAL:<span id="ram-total">0</span>
+                            USADO:<span id="ram-usado">0</span>
+                            DISPONÍVEL:<span id="ram-disponivel">0</span>
                         </div>
                     </div>
                     <div>
@@ -49,9 +49,9 @@
                         <span id="disk-porcentagem">0%</span>
                         <meter id="disk-meter" min="0" max="100" value="0"></meter>
                         <div>
-                            <span id="disk-total">0</span>
-                            <span id="disk-usado">0</span>
-                            <span id="disk-disponivel">0</span>
+                            TOTAL:<span id="disk-total">0</span>
+                            USADO:<span id="disk-usado">0</span>
+                            DISPONÍVEL:<span id="disk-disponivel">0</span>
                         </div>
                     </div>
                 </div>
