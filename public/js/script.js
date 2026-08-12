@@ -97,7 +97,6 @@ async function getStatus() {
 // Executa imediatamente
 getStatus();
 
-
 // Atualiza a cada 5 segundos
 const intervalo = 5000;
 setInterval(getStatus, intervalo);
