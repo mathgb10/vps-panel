@@ -170,7 +170,7 @@ main {
     height: 16px;
 }
 
-.card > span {
+.card>span {
     font-size: 28px;
     font-weight: 600;
     color: var(--text-dark);
@@ -200,7 +200,7 @@ meter::-moz-meter-bar {
     border-radius: 20px;
 }
 
-.card > div:last-child {
+.card>div:last-child {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -209,8 +209,114 @@ meter::-moz-meter-bar {
     font-size: 12px;
 }
 
-.card > div:last-child span {
+.card>div:last-child span {
     color: var(--text-dark);
+}
+
+body:has(.login-container) main {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #1ee55a08 0%, transparent 45%), var(--bg-color);
+}
+
+.login-container {
+    width: 380px;
+    min-height: 350px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 60px #00000055;
+}
+
+.login-container h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.inputs-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.input-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.input-box label {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+input {
+    width: 100%;
+    padding: 11px 13px;
+    color: var(--text-light);
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    transition: 0.2s ease;
+}
+
+input::placeholder {
+    color: #666;
+}
+
+input:hover {
+    border-color: #ffffff25;
+}
+
+input:focus {
+    border-color: var(--principal-color);
+    box-shadow: 0 0 0 3px #1ee55a12;
+}
+
+.btn-full {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: #101010;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.primary-btn {
+    background: var(--principal-color);
+}
+
+.primary-btn:hover {
+    background: var(--principal-hover);
+    box-shadow: 0 8px 25px #1ee55a25;
+}
+
+.primary-btn:active {
+    transform: scale(0.98);
+}
+
+.error-message {
+    width: 100%;
+    padding: 10px 12px;
+    background: #ff4d4d12;
+    border: 1px solid #ff4d4d30;
+    border-radius: var(--radius-sm);
+    color: var(--danger-color);
+    font-size: 13px;
+    text-align: center;
 }
 
 @media (max-width: 800px) {
