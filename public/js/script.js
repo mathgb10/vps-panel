@@ -75,21 +75,21 @@ async function getStatus() {
     ]);
 
     // DISCO
-    dom.diskPorcentagem.textContent = `${disk.porcentagem}%`;
+    dom.diskPorcentagem.textContent = `${disk.porcentagem.toFixed(2)}%`;
     dom.diskMeter.value = disk.porcentagem;
     dom.diskTotal.textContent = formatarBytes(disk.total);
     dom.diskUsado.textContent = formatarBytes(disk.usado);
     dom.diskDisponivel.textContent = formatarBytes(disk.disponivel);
 
     // RAM
-    dom.ramPorcentagem.textContent = `${ram.porcentagem}%`;
+    dom.ramPorcentagem.textContent = `${ram.porcentagem.toFixed(2)}%`;
     dom.ramMeter.value = ram.porcentagem;
     dom.ramTotal.textContent = formatarBytes(ram.total * 1024);
     dom.ramUsado.textContent = formatarBytes(ram.usado * 1024);
     dom.ramDisponivel.textContent = formatarBytes(ram.disponivel * 1024);
 
     // CPU
-    dom.cpuPorcentagem.textContent = `${cpu.porcentagem}%`;
+    dom.cpuPorcentagem.textContent = `${cpu.porcentagem.toFixed(2)}%`;
     dom.cpuMeter.value = cpu.porcentagem;
 }
 
