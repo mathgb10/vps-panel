@@ -30,6 +30,6 @@
             <button type="submit" onclick="sendData()" class="btn-full primary-btn">Entrar</button>
         </div>
     </main>
-    <script src="/js/script.js" defer></script>
+    <!-- <script src="/js/script.js" defer></script> -->
 </body>
 </html>
