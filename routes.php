@@ -51,6 +51,10 @@ switch ($rota) {
         $sistemaController->cpu();
         break;
 
+    case 'api/system/docker':
+        $sistemaController->docker();
+        break;
+
     default:
         http_response_code(404);
         echo "Página não encontrada.";

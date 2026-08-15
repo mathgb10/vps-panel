@@ -68,4 +68,46 @@ class SystemService
         ];
     }
 
+    public function getDocker()
+    {
+        $resposta = [];
+        $return_code = 0;
+        // exec(
+        //     'docker ps --format' . escapeshellarg('{{json .}}') . 
+        //     ' 2>/dev/null', $resposta, $return_code
+        // );
+
+        exec(
+            'docker ps',$resposta,$return_code
+        );
+
+        var_dump($return_code);
+        var_dump($resposta);
+        
+        if ($return_code !== 0) {
+            return ['running' => false, 'apps' => []];
+        } 
+
+        $apps = [];
+
+        foreach ($resposta as $l) {
+            $container = json_decode($l,true);
+            if(!$container){
+                continue;
+            }
+            $apps[] = [
+                'id' => $container['ID'],
+                'nome' => $container['Names'],
+                'status' => $container['Status'],
+                'criado_em' => $container['CreatedAt'],
+            ];
+        }
+        
+        return [
+            'running' => true,
+            'apps' => $apps
+        ];
+        
+    }
+
 }

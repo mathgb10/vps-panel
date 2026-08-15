@@ -27,7 +27,7 @@
                     <input type="password" id="senha" name="senha" required>
                 </div>
             </div>
-            <button type="submit" onclick="sendData()" class="btn-full primary-btn">Entrar</button>
+            <button type="submit" class="btn-full primary-btn">Entrar</button>
         </div>
     </main>
     <!-- <script src="/js/script.js" defer></script> -->

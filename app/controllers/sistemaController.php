@@ -33,4 +33,12 @@ class sistemaController {
         header('Content-Type: application/json');
         echo json_encode($resposta);
     }
+
+    public function docker(){
+	    $this->checkAuth();
+	    $sistemaService = new SystemService();
+	    $resposta = $sistemaService->getDocker();
+	    header('Content-Type: application/json');
+	    echo json_encode($resposta);
+   }
 }

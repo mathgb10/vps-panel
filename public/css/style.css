@@ -122,10 +122,7 @@ main {
     flex: 1;
     min-width: 0;
     padding: 24px;
-}
-
-.header {
-    margin-bottom: 20px;
+    gap: 20px;
 }
 
 .header h1 {
@@ -221,6 +218,39 @@ body:has(.login-container) main {
     background: radial-gradient(circle at center, #1ee55a08 0%, transparent 45%), var(--bg-color);
 }
 
+.context-box{
+    width: 100%;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    overflow: auto;
+}
+
+td form{
+    width: 100%;
+    display: flex;
+    gap: 3px;
+}
+
+#reset, #stop-start{
+    border: 1px solid var(--border-color);
+}
+
+#reset{
+    background: oklch(70.7% 0.165 254.624);
+    &:hover{
+        background: oklch(54.6% 0.245 262.881);
+    }    
+}
+
+#stop-start {
+    background: oklch(82.8% 0.189 84.429);
+    &:hover{
+        background: oklch(76.9% 0.188 70.08);
+    }
+}
 .login-container {
     width: 380px;
     min-height: 350px;

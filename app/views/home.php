@@ -55,6 +55,36 @@
                         </div>
                     </div>
                 </div>
+                <div class="informacoes-container">
+                    <div class="informacoes-box">
+                        <div class="card">
+                            <div class="header-infos"><span>Aplicações Docker:</span> <img src="/assets/icons/docker-brands-solid-full.svg" alt="Docker"></div>
+                            <div class="context-box">
+                                <table>
+                                    <thead>
+                                        <th>ID</th>
+                                        <th>Nome</th>
+                                        <th>Status</th>
+                                        <th>Ações</th>
+                                    </thead>
+                                    <tbody id="docker-table">
+                                        <tr>
+                                            <td>01</td>
+                                            <td>Example</td>
+                                            <td>Example</td>
+                                            <td>
+                                                <form action="" method="POST">
+                                                    <button id="reset">Reset</button>
+                                                    <button id="stop-start">Stop</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
