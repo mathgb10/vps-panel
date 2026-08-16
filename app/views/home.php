@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel VPS - Home</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/responsividade.css">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 
@@ -19,7 +21,7 @@
             </div>
             <div class="links">
                 <?php $atualmente = $_SERVER['REQUEST_URI']; ?>
-                <a href="/home" <?= $atualmente == "/home" ? "class='ativo'" : null ?>>Home</a>
+                <a href="/home" <?= $atualmente == "/home" ? "class='ativo'" : null ?>><img src="/assets/icons/house.svg" alt="Home">Home</a>
             </div>
             <div class="footer-sidebar">
                 <a href="/logout">Sair<img src="/assets/icons/box-arrow-in-right.svg" alt="Sair"></a>
@@ -84,15 +86,6 @@
                                     <th>Ações</th>
                                 </thead>
                                 <tbody id="docker-table">
-                                    <tr>
-                                        <td>01</td>
-                                        <td>Example</td>
-                                        <td>Example</td>
-                                        <td>
-                                            <button class="btns" id="reset">Reset</button>
-                                            <button class="btns" id="stop-start">Stop</button>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>

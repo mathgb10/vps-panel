@@ -13,7 +13,9 @@ const dom = {
     diskUsado: document.getElementById('disk-usado'),
     diskDisponivel: document.getElementById('disk-disponivel'),
     diskPorcentagem: document.getElementById('disk-porcentagem'),
-    diskMeter: document.getElementById('disk-meter')
+    diskMeter: document.getElementById('disk-meter'),
+
+    dockerTable: document.getElementById('docker-table')
 };
 
 
@@ -65,13 +67,27 @@ async function getCpu() {
     }
 }
 
+async function getDocker() {
+    try {
+        const resp = await fetch('/api/system/docker');
+        const data = await resp.json();
+        return data;
+    } catch (error) {
+        console.error('Erro ao buscar Docker:', error);
+        return null;
+    }
+    console.log('Docker data:', data);
+}
+
+
 
 // Atualiza as informações do painel
 async function getStatus() {
-    const [cpu, ram, disk] = await Promise.all([
+    const [cpu, ram, disk, docker] = await Promise.all([
         getCpu(),
         getRAM(),
-        getDisk()
+        getDisk(),
+        getDocker()
     ]);
 
     // DISCO
@@ -91,6 +107,24 @@ async function getStatus() {
     // CPU
     dom.cpuPorcentagem.textContent = `${cpu.porcentagem.toFixed(2)}%`;
     dom.cpuMeter.value = cpu.porcentagem;
+
+    // DOCKER
+    docker.apps.forEach(e => {
+        if(dom.dockerTable.innerHTML.includes(e.id)){
+            return;
+        }
+        dom.dockerTable.innerHTML += `
+            <tr>
+                <td>${e.id}</td>
+                <td>${e.nome}</td>
+                <td>${e.status}</td>
+                <td>
+                    <button class="btns" id="reset"><img src="/assets/icons/arrow-repeat.svg" alt="Restart"></button>
+                    <button class="btns" id="stop-start"><img src="/assets/icons/stop-fill.svg" alt="Stop/Start"></button>
+                </td>
+            </tr>
+        `
+    });
 }
 
 

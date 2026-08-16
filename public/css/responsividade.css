@@ -1,0 +1,55 @@
+@media (max-width: 800px) {
+    .sidebar {
+        width: 190px;
+    }
+
+    .content {
+        padding: 18px;
+    }
+
+    .header h1 {
+        font-size: 22px;
+    }
+
+    .card {
+        flex-basis: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    main {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+
+        padding: 14px 16px;
+    }
+
+    .header-sidebar {
+        padding-bottom: 12px;
+    }
+
+    .links {
+        padding-top: 10px;
+    }
+
+    .footer-sidebar {
+        margin-top: 8px;
+    }
+
+    .content {
+        padding: 16px;
+    }
+
+    .informacoes-box {
+        gap: 12px;
+    }
+
+    .card {
+        min-width: 0;
+        padding: 16px;
+    }
+}

@@ -73,39 +73,28 @@ class SystemService
         $resposta = [];
         $return_code = 0;
 
-        // exec(
-        //     'docker ps --format' . escapeshellarg('{{json .}}') . 
-        //     ' 2>/dev/null', $resposta, $return_code
-        // );
-
         exec(
-            'docker ps',$resposta,$return_code
+            'docker ps --format ' . escapeshellarg('{{json .}}') . ' 2>&1',
+            $resposta,
+            $return_code
         );
 
-        var_dump($return_code);
-        var_dump($resposta);
-
-        exec('whoami 2>&1', $output, $code);
-
-    var_dump($output);
-    var_dump($code);
-
-    exec('which docker 2>&1', $output, $code);
-
-var_dump($output);
-var_dump($code);
-        
         if ($return_code !== 0) {
-            return ['running' => false, 'apps' => []];
-        } 
+            return [
+                'running' => false,
+                'apps' => []
+            ];
+        }
 
         $apps = [];
 
-        foreach ($resposta as $l) {
-            $container = json_decode($l,true);
-            if(!$container){
+        foreach ($resposta as $linha) {
+            $container = json_decode($linha, true);
+
+            if (!$container) {
                 continue;
             }
+
             $apps[] = [
                 'id' => $container['ID'],
                 'nome' => $container['Names'],
@@ -113,22 +102,10 @@ var_dump($code);
                 'criado_em' => $container['CreatedAt'],
             ];
         }
-        
+
         return [
             'running' => true,
             'apps' => $apps
         ];
-        
     }
-
-    public function restarSystem(){
-        exec (
-            "rebot"
-        );
-        
-        return [
-            "reset" => true
-        ];
-    }
-
 }
