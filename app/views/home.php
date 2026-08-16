@@ -11,31 +11,42 @@
 
 <body>
     <main>
+        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="header-sidebar">
                 <h3>VPS Panel</h3>
                 <p>1.0</p>
             </div>
             <div class="links">
-                <a href="/home">Home</a>
+                <?php $atualmente = $_SERVER['REQUEST_URI']; ?>
+                <a href="/home" <?= $atualmente == "/home" ? "class='ativo'" : null ?>>Home</a>
             </div>
             <div class="footer-sidebar">
                 <a href="/logout">Sair<img src="/assets/icons/box-arrow-in-right.svg" alt="Sair"></a>
             </div>
         </aside>
+
+        <!-- Conteudo Principal -->
         <section class="content">
             <header class="header">
                 <h1>Bem-vindo ao Panel VPS Sr <?= $_SESSION['usuario']; ?></h1>
             </header>
+            <!-- Cards -->
             <div class="informacoes-container">
                 <div class="informacoes-box">
                     <div class="card">
-                        <div class="header-infos"><span>CPU:</span> <img src="/assets/icons/cpu.svg" alt="CPU"></div>
+                        <div class="header-infos">
+                            <span>CPU:</span> 
+                            <img src="/assets/icons/cpu.svg" alt="CPU">
+                        </div>
                         <span id="cpu-porcentagem">0%</span>
                         <meter id="cpu-meter" min="0" max="100" value="0"></meter>
                     </div>
                     <div class="card">
-                        <div class="header-infos"><span>RAM:</span> <img src="/assets/icons/memory.svg" alt="RAM"></div>
+                        <div class="header-infos">
+                            <span>RAM:</span> 
+                            <img src="/assets/icons/memory.svg" alt="RAM">
+                        </div>
                         <span id="ram-porcentagem">0%</span>
                         <meter id="ram-meter" min="0" max="100" value="0"></meter>
                         <div>
@@ -45,7 +56,10 @@
                         </div>
                     </div>
                     <div class="card">
-                        <div class="header-infos"><span>Disco:</span> <img src="/assets/icons/device-hdd-fill.svg" alt="Disco"></div>
+                        <div class="header-infos">
+                            <span>Disco:</span> 
+                            <img src="/assets/icons/device-hdd-fill.svg" alt="Disco">
+                        </div>
                         <span id="disk-porcentagem">0%</span>
                         <meter id="disk-meter" min="0" max="100" value="0"></meter>
                         <div>
@@ -55,33 +69,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="informacoes-container">
-                    <div class="informacoes-box">
-                        <div class="card">
-                            <div class="header-infos"><span>Aplicações Docker:</span> <img src="/assets/icons/docker-brands-solid-full.svg" alt="Docker"></div>
-                            <div class="context-box">
-                                <table>
-                                    <thead>
-                                        <th>ID</th>
-                                        <th>Nome</th>
-                                        <th>Status</th>
-                                        <th>Ações</th>
-                                    </thead>
-                                    <tbody id="docker-table">
-                                        <tr>
-                                            <td>01</td>
-                                            <td>Example</td>
-                                            <td>Example</td>
-                                            <td>
-                                                <form action="" method="POST">
-                                                    <button id="reset">Reset</button>
-                                                    <button id="stop-start">Stop</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+            </div>
+            <!-- Tabelas -->
+            <div class="informacoes-container">
+                <div class="informacoes-box">
+                    <div class="card">
+                        <div class="header-infos"><span>Aplicações Docker:</span> <img src="/assets/icons/docker-brands-solid-full.svg" alt="Docker"></div>
+                        <div class="context-box">
+                            <table>
+                                <thead>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </thead>
+                                <tbody id="docker-table">
+                                    <tr>
+                                        <td>01</td>
+                                        <td>Example</td>
+                                        <td>Example</td>
+                                        <td>
+                                            <button class="btns" id="reset">Reset</button>
+                                            <button class="btns" id="stop-start">Stop</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

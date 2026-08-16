@@ -72,6 +72,7 @@ class SystemService
     {
         $resposta = [];
         $return_code = 0;
+
         // exec(
         //     'docker ps --format' . escapeshellarg('{{json .}}') . 
         //     ' 2>/dev/null', $resposta, $return_code
@@ -83,6 +84,16 @@ class SystemService
 
         var_dump($return_code);
         var_dump($resposta);
+
+        exec('whoami 2>&1', $output, $code);
+
+    var_dump($output);
+    var_dump($code);
+
+    exec('which docker 2>&1', $output, $code);
+
+var_dump($output);
+var_dump($code);
         
         if ($return_code !== 0) {
             return ['running' => false, 'apps' => []];
@@ -108,6 +119,16 @@ class SystemService
             'apps' => $apps
         ];
         
+    }
+
+    public function restarSystem(){
+        exec (
+            "rebot"
+        );
+        
+        return [
+            "reset" => true
+        ];
     }
 
 }
